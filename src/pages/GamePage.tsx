@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -279,7 +278,6 @@ const ATTEMPTS = 10;
 const RECENT_COUNT = 5;
 
 const GamePage = () => {
-  const navigate = useNavigate();
   const [gameState, setGameState] = useState<'waiting' | 'ready' | 'clicked' | 'tooSoon'>('waiting');
   const [startTime, setStartTime] = useState<number>(0);
   const [reactionTime, setReactionTime] = useState<number | null>(null);
@@ -310,8 +308,7 @@ const GamePage = () => {
   }, []);
 
   // Handle music toggle
-  const toggleMusic = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const toggleMusic = () => {
     if (audioRef.current) {
       if (isMusicPlaying) {
         audioRef.current.pause();
@@ -350,7 +347,7 @@ const GamePage = () => {
 
   // Handle click or key
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
+    const onKey = () => {
       if (['waiting', 'ready'].includes(gameState)) handleClick();
     };
     window.addEventListener('keydown', onKey);
