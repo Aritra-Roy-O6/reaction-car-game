@@ -265,12 +265,17 @@ const TreeImg = styled.img<{ left: string }>`
 
 // --- Age Mapping ---
 function getReactionAge(avg: number) {
-  if (avg < 200) return '18–24';
-  if (avg < 250) return '25–34';
-  if (avg < 300) return '35–44';
-  if (avg < 350) return '45–54';
-  if (avg < 400) return '55–64';
-  return '65+';
+  if (avg <= 50) return 'CAT!';
+  if (avg <= 120) return 'Can dodge a bullet';
+  if (avg <= 250) return 'Max Verstappen?';
+  if (avg <= 350) return '18-24 years';
+  if (avg <= 430) return '25-34 years';
+  if (avg <= 530) return '35-44 years';
+  if (avg <= 620) return '45-54 years';
+  if (avg <= 750) return '55-64 years';
+  if (avg <= 900) return '64-75 years';
+  if (avg <= 1200) return '75 years+';
+  return 'Bruh.';
 }
 
 // --- Main Component ---
@@ -421,7 +426,7 @@ const GamePage = () => {
           <TreeImg
             key={`left-${i}`}
             src="/tree.png"
-            left="calc(30vw - 80px)"
+            left="calc(28vw - 80px)"
             style={{
               top: `calc(${(i / TREE_COUNT) * 100}% - ${TREE_HEIGHT / 2}px)`,
               animation: `treeMove ${TREE_ANIMATION_DURATION}s linear infinite`,
@@ -434,7 +439,7 @@ const GamePage = () => {
           <TreeImg
             key={`right-${i}`}
             src="/tree.png"
-            left="calc(70vw + 20px)"
+            left="calc(62vw + 20px)"
             style={{
               top: `calc(${(i / TREE_COUNT) * 100}% - ${TREE_HEIGHT / 2}px)`,
               animation: `treeMove ${TREE_ANIMATION_DURATION}s linear infinite`,
